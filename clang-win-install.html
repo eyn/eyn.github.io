@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="eyn.css" />
+</head>
+<body>
+
+<p>Clang/LLVM Windows Install Hack Tutorial</p>
+<p>last modified: 1441055270</p>
+<br/>
+<p>Tested on the following operating systems:</p>
+<p>Windows 7 32-bit</p>
+<p>Windows 8.1 64-bit</p>
+<br/>
+<p>The strategy in this guide is absolutely not minimalism, but rather brute force. Even after battering your OS for the duration of these instructions, there is still a chance that your OS will find a way to break prevent a successful setup.  That is why you should follow the instructions as closely as possible, however, never feel afraid to do more than the instructions ask of you, rather, be afraid of doing less.  Good luck!</p>
+<br/>
+<p>1) Install CMake: <a href="http://www.cmake.org/download/">http://www.cmake.org/download/</a></p>
+<p>	a) Install in directory "C:\Program Files\CMake"</p>
+<p>	b) Installer will most likely say, "Warning! PATH too long installer unable to modify PATH!: To fix this, go to the Start Menu, type in the search box "accounts" and click on User Accounts.  On the left-hand side at the bottom, click "Change my environment variables".  In the top table, click on Path and click Edit.  With the cursor inside the bottom textbox, hit the End button on the keyboard to go to the end of the line and enter "C:\Program Files\CMake\bin;"  Click both OK's to exit both windows.</p>
+<p>2) Install Visual Studio 2013 or later. Note: Microsoft will try to fool you into thinking that it is not free, but if you navigate around the Visual Studio homepage you will eventually find the free version called "Visual Studio Community".  At the moment, you can download it from this URL: <a href="https://www.visualstudio.com/products/visual-studio-community-vs">https://www.visualstudio.com/products/visual-studio-community-vs</a></p>
+<p>3) Install the latest Python 2: <a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a> NOTE: I have heard tales of Clang accepting Python 3, but unless you develop in Python 3 and it is in your path, I would use Python 2.</p>
+<p>4) Install GnuWin: <a href="http://getgnuwin32.sourceforge.net/">http://getgnuwin32.sourceforge.net/</a></p>
+<p>5) Install MinGW: <a href="http://sourceforge.net/projects/mingw/files/Installer/">http://sourceforge.net/projects/mingw/files/Installer/</a> The file is called "mingw-get-setup.exe"</p>
+<p>	a) Choose the settings you want if you have the permissions, but make sure the installation directory is "C:\MinGW"</p>
+<p>	b) When the Choose Packages menu appears, click Basic Setup and make sure the following packages are selected:</p>
+<p>		mingw-developer-toolkit</p>
+<p>		mingw32-base</p>
+<p>		mingw32-gcc-g++</p>
+<p>		mingw32-gcc-objc</p>
+<p>		msys-base</p>
+<p>	c) When finished, go up to the menu bar, click Installation, and click Apply Changes, then Apply</p>
+<p>6) Download Clang Windows binary installer ( <a href="http://llvm.org/releases/download.html">http://llvm.org/releases/download.html</a> ) and install Clang. Be sure to select either "Add to path for all users" or "Add to path for current user".</p>
+<br/>
+<p>Test Clang:</p>
+<p>1) Open up the command console (Windows Button + R or Start Menu -> Run, type "cmd" and press Enter)</p>
+<p>2) Run the command "cd %userprofile%\documents"</p>
+<p>3) Create a file in My Documents called "testclang.c" with the following contents:</p>
+<br/>
+<p>	#include <stdio.h></p>
+<br/>
+<p>	int main() {</p>
+<p>		printf("Hello World!");</p>
+<p>	}</p>
+<p>	</p>
+<p>4) Go back to the command console and run the command "clang testclang.c", which should generate "a.exe" in My Documents</p>
+<p>5) Run the command "a" to run the executable</p>
+<p>6) Run the command "clang testclang.c -S -emit-llvm", which should generate "testclang.ll" in My Documents</p>
+<p>7) Open "testclang.ll" in a text editor to view the generated LLVM IR</p>
+</body>
+</html>
